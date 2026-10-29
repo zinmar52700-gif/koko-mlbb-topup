@@ -1,187 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="my">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101827">
-  <title>Ko Ko PUBG UC TopUp</title>
-
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #101827;
-      color: white;
-      text-align: center;
-    }
-
-    h1 { color: #f5b800; }
-
-    .card {
-      max-width: 440px;
-      margin: 18px auto;
-      padding: 20px;
-      background: #1e293b;
-      border-radius: 15px;
-    }
-
-    .package {
-      margin: 12px 0;
-      padding: 14px;
-      background: #0f172a;
-      border: 1px solid #475569;
-      border-radius: 10px;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    input {
-      background: #0f172a;
-      color: white;
-      border: 1px solid #475569;
-    }
-
-    button {
-      background: #f5b800;
-      color: #101827;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .price { color: #f5b800; }
-    .hidden { display: none; }
-    .note { color: #cbd5e1; font-size: 13px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ko Ko TopUp</title>
+<style>
+body{margin:0;padding:20px;background:#101827;color:white;font-family:Arial;text-align:center}
+h1{color:#f5b800}
+.card{background:#1e293b;padding:20px;margin:16px auto;border-radius:15px;max-width:420px}
+button,select,input{width:100%;padding:13px;margin:8px 0;border-radius:8px;box-sizing:border-box;font-size:16px}
+button{background:#f5b800;border:0;font-weight:bold}
+select,input{background:#0f172a;color:white;border:1px solid #475569}
+.hidden{display:none}
+.game{padding:16px;background:#0f172a;border-radius:12px;margin:12px 0}
+.note{font-size:13px;color:#cbd5e1}
+</style>
 </head>
-
 <body>
-  <h1>🎮 Ko Ko PUBG UC TopUp</h1>
-  <p>PUBG Mobile UC Packages</p>
 
-  <div class="card">
-    <h2>🪙 PUBG UC</h2>
-    <p>ဝယ်ယူလိုသော UC Package ကို ရွေးချယ်ပါ။</p>
-    <button onclick="showPackages()">View UC Packages</button>
-  </div>
+<h1>🎮 Ko Ko TopUp</h1>
+<p>MLBB Diamonds 💎 | PUBG UC 🪙</p>
 
-  <div class="card hidden" id="packages">
-    <h2>📦 Select UC Package</h2>
+<div class="card">
+<h2>ဂိမ်းရွေးပါ</h2>
+<button onclick="chooseGame('MLBB')">💎 Mobile Legends Diamonds</button>
+<button onclick="chooseGame('PUBG')">🪙 PUBG Mobile UC</button>
+</div>
 
-    <div class="package">
-      <h3>60 UC</h3>
-      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="chooseUC('60 UC')">ရွေးချယ်မယ်</button>
-    </div>
+<div class="card hidden" id="order">
+<h2 id="gameTitle"></h2>
+<label for="pack">Package ရွေးပါ</label>
+<select id="pack"></select>
+<label for="uid">Player ID / UID</label>
+<input id="uid" placeholder="Player ID ထည့်ပါ">
+<div id="serverBox">
+<label for="server">Server ID (MLBB အတွက်)</label>
+<input id="server" placeholder="Server ID ထည့်ပါ">
+</div>
+<button onclick="reviewOrder()">Order အချက်အလက် ကြည့်မယ်</button>
+</div>
 
-    <div class="package">
-      <h3>325 UC</h3>
-      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="chooseUC('325 UC')">ရွေးချယ်မယ်</button>
-    </div>
+<div class="card hidden" id="summaryCard">
+<h2>📋 Order Summary</h2>
+<p id="summary"></p>
+<p class="note">ဤအဆင့်သည် နမူနာသာဖြစ်ပြီး Order ကို Supplier ထံ အလိုအလျောက် မပို့သေးပါ။ ဈေးနှုန်းနှင့် Package ရရှိနိုင်မှုကို အတည်ပြုရန် လိုအပ်ပါသည်။</p>
+<button onclick="copyOrder()">အချက်အလက် Copy လုပ်မယ်</button>
+</div>
 
-    <div class="package">
-      <h3>660 UC</h3>
-      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="chooseUC('660 UC')">ရွေးချယ်မယ်</button>
-    </div>
-
-    <div class="package">
-      <h3>1800 UC</h3>
-      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="chooseUC('1800 UC')">ရွေးချယ်မယ်</button>
-    </div>
-  </div>
-
-  <div class="card hidden" id="order">
-    <h2>📝 Order Information</h2>
-    <p>ရွေးထားသော Package</p>
-    <h3 class="price" id="chosen"></h3>
-
-    <input id="playerId"
-      type="text"
-      inputmode="numeric"
-      placeholder="PUBG Player ID (UID)">
-
-    <button onclick="reviewOrder()">Order အချက်အလက် စစ်မယ်</button>
-  </div>
-
-  <div class="card hidden" id="summaryCard">
-    <h2>📋 Order Summary</h2>
-    <p id="summary"></p>
-    <p class="note">
-      ဒီ Website က Order ကို အလိုအလျောက် မပို့သေးပါ။
-      UC ရရှိနိုင်မှုနဲ့ စျေးနှုန်းကို Supplier ဆီမှာ အတည်ပြုပါ။
-    </p>
-    <button onclick="copyOrder()">Order ကို Copy လုပ်မယ်</button>
-  </div>
-
-  <div class="card">
-    <h3>📞 Customer Support</h3>
-    <p>TopUp အကူအညီအတွက် ဆက်သွယ်ရန်</p>
-  </div>
-
-  <p class="note">
-    Package နဲ့ စျေးနှုန်းတွေဟာ နမူနာသာဖြစ်ပါတယ်။
-  </p>
-
-  <script>
-    let selectedUC = "";
-
-    function showPackages() {
-      document.getElementById("packages").classList.remove("hidden");
-      document.getElementById("packages").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-
-    function chooseUC(packageName) {
-      selectedUC = packageName;
-      document.getElementById("chosen").textContent = packageName;
-      document.getElementById("order").classList.remove("hidden");
-      document.getElementById("order").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-
-    function reviewOrder() {
-      const uid = document.getElementById("playerId").value.trim();
-
-      if (!uid) {
-        alert("PUBG Player ID (UID) ကို ဖြည့်ပါ။");
-        return;
-      }
-
-      document.getElementById("summary").textContent =
-        "Game: PUBG Mobile\n" +
-        "Package: " + selectedUC + "\n" +
-        "Player UID: " + uid;
-
-      document.getElementById("summaryCard").classList.remove("hidden");
-      document.getElementById("summaryCard").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-
-    async function copyOrder() {
-      const text = document.getElementById("summary").textContent;
-
-      try {
-        await navigator.clipboard.writeText(text);
-        alert("Order အချက်အလက် Copy လုပ်ပြီးပါပြီ။");
-      } catch (e) {
-        alert("Copy မရပါ။ အချက်အလက်ကို ကိုယ်တိုင်ကူးယူပါ။");
-      }
-    }
-  </script>
+<script>
+let game="";
+function chooseGame(g){
+ game=g;
+ document.getElementById("order").classList.remove("hidden");
+ document.getElementById("summaryCard").classList.add("hidden");
+ document.getElementById("gameTitle").textContent =
+   g==="MLBB" ? "💎 MLBB Diamonds" : "🪙 PUBG Mobile UC";
+ const pack=document.getElementById("pack");
+ pack.innerHTML="";
+ const items=g==="MLBB"
+   ? ["86 Diamonds","172 Diamonds","257 Diamonds","Weekly Pass"]
+   : ["60 UC","325 UC","660 UC","1800 UC","3850 UC"];
+ items.forEach(item=>{
+   const option=document.createElement("option");
+   option.value=item;
+   option.textContent=item+" — ဈေးနှုန်း အတည်ပြုရန်လို";
+   pack.appendChild(option);
+ });
+ document.getElementById("serverBox").style.display =
+   g==="MLBB" ? "block" : "none";
+ document.getElementById("order").scrollIntoView({behavior:"smooth"});
+}
+function reviewOrder(){
+ const uid=document.getElementById("uid").value.trim();
+ const server=document.getElementById("server").value.trim();
+ const pack=document.getElementById("pack").value;
+ if(!uid){alert("Player ID / UID ထည့်ပေးပါ။");return;}
+ if(game==="MLBB"&&!server){alert("MLBB Server ID ထည့်ပေးပါ။");return;}
+ let text="Game: "+(game==="MLBB"?"Mobile Legends":"PUBG Mobile")+
+ "\nPackage: "+pack+"\nPlayer ID / UID: "+uid;
+ if(game==="MLBB")text+="\nServer ID: "+server;
+ document.getElementById("summary").textContent=text;
+ document.getElementById("summaryCard").classList.remove("hidden");
+ document.getElementById("summaryCard").scrollIntoView({behavior:"smooth"});
+}
+async function copyOrder(){
+ const text=document.getElementById("summary").textContent;
+ try{await navigator.clipboard.writeText(text);alert("Copy လုပ်ပြီးပါပြီ။");}
+ catch(e){alert("Order အချက်အလက်ကို ကိုယ်တိုင်ကူးယူပါ။");}
+}
+</script>
 </body>
 </html>
+
