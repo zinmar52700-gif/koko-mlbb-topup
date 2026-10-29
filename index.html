@@ -3,115 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
   <title>Ko Ko MLBB TopUp</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
+      padding: 20px;
       font-family: Arial, sans-serif;
       background: #101827;
       color: white;
       text-align: center;
-      padding: 20px;
+    }
+
+    h1 {
+      color: #f5b800;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
     }
 
     .card {
       background: #1e293b;
       padding: 20px;
-      margin: 15px auto;
-      border-radius: 15px;
-      max-width: 400px;
+      margin: 18px auto;
+      border-radius: 16px;
+      max-width: 460px;
+      border: 1px solid #334155;
     }
 
     button, select, input {
-      box-sizing: border-box;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      margin: 6px;
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      border-radius: 9px;
       font-size: 16px;
     }
 
     button {
       background: #f5b800;
+      color: #101827;
+      border: none;
       font-weight: bold;
       cursor: pointer;
     }
 
+    button:active {
+      transform: scale(0.98);
+    }
+
     select, input {
-      width: 90%;
-      max-width: 320px;
+      background: #0f172a;
+      color: white;
+      border: 1px solid #475569;
+    }
+
+    .package {
+      background: #0f172a;
+      border: 1px solid #475569;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .package button {
+      margin-bottom: 0;
+    }
+
+    .price {
+      color: #f5b800;
     }
 
     .hidden {
       display: none;
     }
 
-    .package {
-      background: #334155;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 10px 0;
+    .notice {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.7;
     }
 
-    a {
-      color: #f5b800;
+    footer {
+      margin: 28px 0;
+      color: #94a3b8;
+      font-size: 13px;
     }
   </style>
 </head>
+
 <body>
+
   <h1>🎮 Ko Ko MLBB TopUp</h1>
-  <p>MLBB Diamonds & Weekly Pass</p>
+  <p class="subtitle">💎 MLBB Diamonds & Weekly Pass</p>
 
   <div class="card">
     <h2>💎 Mobile Legends</h2>
-    <p>ကိုယ်ဝယ်ချင်တဲ့ Package ကို ရွေးချယ်ပါ။</p>
+    <p>ကြိုက်နှစ်သက်ရာ Package ကို ရွေးချယ်ပါ။</p>
     <button onclick="showPackages()">View Packages</button>
   </div>
 
   <div class="card hidden" id="packages">
     <h2>📦 Select Package</h2>
 
-    <label for="region">Region ရွေးပါ</label><br>
+    <label for="region">Region ရွေးပါ</label>
     <select id="region">
       <option value="Myanmar">Myanmar</option>
       <option value="Brazil">Brazil</option>
-      <option value="Other">Other Region (အတည်ပြုရန်လို)</option>
+      <option value="Other">Other Region</option>
     </select>
 
     <div class="package">
       <h3>💎 86 Diamonds</h3>
-      <p>စျေးနှုန်းကို မကြာမီ ထည့်သွင်းပါမည်။</p>
+      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
+      <button onclick="selectPackage('86 Diamonds')">
+        ဒီ Package ရွေးမယ်
+      </button>
     </div>
 
     <div class="package">
       <h3>💎 172 Diamonds</h3>
-      <p>စျေးနှုန်းကို မကြာမီ ထည့်သွင်းပါမည်။</p>
+      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
+      <button onclick="selectPackage('172 Diamonds')">
+        ဒီ Package ရွေးမယ်
+      </button>
+    </div>
+
+    <div class="package">
+      <h3>💎 257 Diamonds</h3>
+      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
+      <button onclick="selectPackage('257 Diamonds')">
+        ဒီ Package ရွေးမယ်
+      </button>
     </div>
 
     <div class="package">
       <h3>🎟️ Weekly Pass</h3>
-      <p>စျေးနှုန်းကို မကြာမီ ထည့်သွင်းပါမည်။</p>
+      <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
+      <button onclick="selectPackage('Weekly Pass')">
+        ဒီ Package ရွေးမယ်
+      </button>
     </div>
-
-    <p>အထက်ပါ Package များသည် နမူနာသာ ဖြစ်ပြီး လက်ရှိ Supplier မှ ရရှိနိုင်မှုကို အတည်မပြုရသေးပါ။</p>
-
-    <input id="playerId" type="text" placeholder="MLBB Player ID">
-    <input id="serverId" type="text" placeholder="Server ID">
-    <button onclick="sendOrder()">Order အကြောင်း မေးရန်</button>
   </div>
 
-  <div class="card hidden" id="orderInfo">
-    <h3>📋 Order အချက်အလက်</h3>
-    <p id="orderText"></p>
-    <p>ဒီ Website က Order ကို အလိုအလျောက် မပို့သေးပါ။ Support နဲ့ အတည်ပြုပါ။</p>
+  <div class="card hidden" id="order">
+    <h2>📝 Order Information</h2>
+
+    <p>ရွေးထားသော Package</p>
+    <h3 id="selectedPackage" class="price"></h3>
+
+    <label for="playerId">MLBB Player ID</label>
+    <input
+      id="playerId"
+      type="text"
+      inputmode="numeric"
+      placeholder="Player ID ထည့်ပါ"
+    >
+
+    <label for="serverId">Server ID</label>
+    <input
+      id="serverId"
+      type="text"
+      inputmode="numeric"
+      placeholder="Server ID ထည့်ပါ"
+    >
+
+    <button onclick="reviewOrder()">Order အချက်အလက် စစ်မယ်</button>
+  </div>
+
+  <div class="card hidden" id="confirmation">
+    <h2>📋 Order Summary</h2>
+    <p id="summary"></p>
+    <p class="notice">
+      ဒီအဆင့်မှာ Order ကို အလိုအလျောက် မပို့သေးပါ။
+      Supplier နဲ့ စျေးနှုန်းကို အတည်ပြုရန် လိုအပ်ပါတယ်။
+    </p>
+    <button onclick="copyOrder()">Order အချက်အလက် Copy လုပ်မယ်</button>
   </div>
 
   <div class="card">
-    <h3>📞 Contact Us</h3>
-    <p>TopUp Support အတွက် ဆက်သွယ်ပါ။</p>
-    <p>Support contact ကို ဒီနေရာမှာ ထည့်နိုင်ပါတယ်။</p>
+    <h3>📞 Customer Support</h3>
+    <p>TopUp အကူအညီအတွက် ဆက်သွယ်ရန်</p>
+    <p class="notice">
+      Support ဆက်သွယ်ရန်လိပ်စာကို အတည်ပြုပြီးမှ ထည့်သွင်းပါ။
+    </p>
   </div>
 
+  <footer>
+    © Ko Ko MLBB TopUp<br>
+    Package availability and prices must be confirmed.
+  </footer>
+
   <script>
+    let currentPackage = "";
+
     function showPackages() {
       document.getElementById("packages").classList.remove("hidden");
       document.getElementById("packages").scrollIntoView({
@@ -119,26 +211,63 @@
       });
     }
 
-    function sendOrder() {
-      const playerId = document.getElementById("playerId").value.trim();
-      const serverId = document.getElementById("serverId").value.trim();
-      const region = document.getElementById("region").value;
+    function selectPackage(packageName) {
+      currentPackage = packageName;
 
-      if (!playerId || !serverId) {
-        alert("Player ID နဲ့ Server ID ကို ဖြည့်ပေးပါ။");
-        return;
-      }
+      document.getElementById("selectedPackage").textContent =
+        packageName;
 
-      document.getElementById("orderText").textContent =
-        "Region: " + region +
-        " | Player ID: " + playerId +
-        " | Server ID: " + serverId;
-
-      document.getElementById("orderInfo").classList.remove("hidden");
-      document.getElementById("orderInfo").scrollIntoView({
+      document.getElementById("order").classList.remove("hidden");
+      document.getElementById("order").scrollIntoView({
         behavior: "smooth"
       });
     }
+
+    function reviewOrder() {
+      const playerId =
+        document.getElementById("playerId").value.trim();
+
+      const serverId =
+        document.getElementById("serverId").value.trim();
+
+      const region =
+        document.getElementById("region").value;
+
+      if (!currentPackage) {
+        alert("Package ကို အရင်ရွေးပါ။");
+        return;
+      }
+
+      if (!playerId || !serverId) {
+        alert("Player ID နဲ့ Server ID ဖြည့်ပေးပါ။");
+        return;
+      }
+
+      const orderText =
+        "Package: " + currentPackage +
+        "\nRegion: " + region +
+        "\nPlayer ID: " + playerId +
+        "\nServer ID: " + serverId;
+
+      document.getElementById("summary").textContent = orderText;
+      document.getElementById("confirmation").classList.remove("hidden");
+
+      document.getElementById("confirmation").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    async function copyOrder() {
+      const text = document.getElementById("summary").textContent;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Order အချက်အလက် Copy လုပ်ပြီးပါပြီ။");
+      } catch (error) {
+        alert("Copy မရပါ။ Order အချက်အလက်ကို ကိုယ်တိုင်ကူးယူပါ။");
+      }
+    }
   </script>
+
 </body>
 </html>
