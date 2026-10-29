@@ -2,14 +2,12 @@
 <html lang="my">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101827">
-  <title>Ko Ko MLBB TopUp</title>
+  <title>Ko Ko PUBG UC TopUp</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -20,189 +18,124 @@
       text-align: center;
     }
 
-    h1 {
-      color: #f5b800;
-      font-size: 28px;
-    }
-
-    .subtitle {
-      color: #cbd5e1;
-    }
+    h1 { color: #f5b800; }
 
     .card {
-      background: #1e293b;
-      padding: 20px;
+      max-width: 440px;
       margin: 18px auto;
-      border-radius: 16px;
-      max-width: 460px;
-      border: 1px solid #334155;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 15px;
     }
 
-    button, select, input {
+    .package {
+      margin: 12px 0;
+      padding: 14px;
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 10px;
+    }
+
+    input, button {
       width: 100%;
       padding: 13px;
       margin: 8px 0;
-      border-radius: 9px;
+      border: none;
+      border-radius: 8px;
       font-size: 16px;
     }
 
-    button {
-      background: #f5b800;
-      color: #101827;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    select, input {
+    input {
       background: #0f172a;
       color: white;
       border: 1px solid #475569;
     }
 
-    .package {
-      background: #0f172a;
-      border: 1px solid #475569;
-      padding: 14px;
-      margin: 12px 0;
-      border-radius: 12px;
-      text-align: left;
+    button {
+      background: #f5b800;
+      color: #101827;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .package button {
-      margin-bottom: 0;
-    }
-
-    .price {
-      color: #f5b800;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .notice {
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.7;
-    }
-
-    footer {
-      margin: 28px 0;
-      color: #94a3b8;
-      font-size: 13px;
-    }
+    .price { color: #f5b800; }
+    .hidden { display: none; }
+    .note { color: #cbd5e1; font-size: 13px; }
   </style>
 </head>
 
 <body>
-
-  <h1>🎮 Ko Ko MLBB TopUp</h1>
-  <p class="subtitle">💎 MLBB Diamonds & Weekly Pass</p>
+  <h1>🎮 Ko Ko PUBG UC TopUp</h1>
+  <p>PUBG Mobile UC Packages</p>
 
   <div class="card">
-    <h2>💎 Mobile Legends</h2>
-    <p>ကြိုက်နှစ်သက်ရာ Package ကို ရွေးချယ်ပါ။</p>
-    <button onclick="showPackages()">View Packages</button>
+    <h2>🪙 PUBG UC</h2>
+    <p>ဝယ်ယူလိုသော UC Package ကို ရွေးချယ်ပါ။</p>
+    <button onclick="showPackages()">View UC Packages</button>
   </div>
 
   <div class="card hidden" id="packages">
-    <h2>📦 Select Package</h2>
-
-    <label for="region">Region ရွေးပါ</label>
-    <select id="region">
-      <option value="Myanmar">Myanmar</option>
-      <option value="Brazil">Brazil</option>
-      <option value="Other">Other Region</option>
-    </select>
+    <h2>📦 Select UC Package</h2>
 
     <div class="package">
-      <h3>💎 86 Diamonds</h3>
+      <h3>60 UC</h3>
       <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="selectPackage('86 Diamonds')">
-        ဒီ Package ရွေးမယ်
-      </button>
+      <button onclick="chooseUC('60 UC')">ရွေးချယ်မယ်</button>
     </div>
 
     <div class="package">
-      <h3>💎 172 Diamonds</h3>
+      <h3>325 UC</h3>
       <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="selectPackage('172 Diamonds')">
-        ဒီ Package ရွေးမယ်
-      </button>
+      <button onclick="chooseUC('325 UC')">ရွေးချယ်မယ်</button>
     </div>
 
     <div class="package">
-      <h3>💎 257 Diamonds</h3>
+      <h3>660 UC</h3>
       <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="selectPackage('257 Diamonds')">
-        ဒီ Package ရွေးမယ်
-      </button>
+      <button onclick="chooseUC('660 UC')">ရွေးချယ်မယ်</button>
     </div>
 
     <div class="package">
-      <h3>🎟️ Weekly Pass</h3>
+      <h3>1800 UC</h3>
       <p class="price">စျေးနှုန်း မသတ်မှတ်ရသေးပါ</p>
-      <button onclick="selectPackage('Weekly Pass')">
-        ဒီ Package ရွေးမယ်
-      </button>
+      <button onclick="chooseUC('1800 UC')">ရွေးချယ်မယ်</button>
     </div>
   </div>
 
   <div class="card hidden" id="order">
     <h2>📝 Order Information</h2>
-
     <p>ရွေးထားသော Package</p>
-    <h3 id="selectedPackage" class="price"></h3>
+    <h3 class="price" id="chosen"></h3>
 
-    <label for="playerId">MLBB Player ID</label>
-    <input
-      id="playerId"
+    <input id="playerId"
       type="text"
       inputmode="numeric"
-      placeholder="Player ID ထည့်ပါ"
-    >
-
-    <label for="serverId">Server ID</label>
-    <input
-      id="serverId"
-      type="text"
-      inputmode="numeric"
-      placeholder="Server ID ထည့်ပါ"
-    >
+      placeholder="PUBG Player ID (UID)">
 
     <button onclick="reviewOrder()">Order အချက်အလက် စစ်မယ်</button>
   </div>
 
-  <div class="card hidden" id="confirmation">
+  <div class="card hidden" id="summaryCard">
     <h2>📋 Order Summary</h2>
     <p id="summary"></p>
-    <p class="notice">
-      ဒီအဆင့်မှာ Order ကို အလိုအလျောက် မပို့သေးပါ။
-      Supplier နဲ့ စျေးနှုန်းကို အတည်ပြုရန် လိုအပ်ပါတယ်။
+    <p class="note">
+      ဒီ Website က Order ကို အလိုအလျောက် မပို့သေးပါ။
+      UC ရရှိနိုင်မှုနဲ့ စျေးနှုန်းကို Supplier ဆီမှာ အတည်ပြုပါ။
     </p>
-    <button onclick="copyOrder()">Order အချက်အလက် Copy လုပ်မယ်</button>
+    <button onclick="copyOrder()">Order ကို Copy လုပ်မယ်</button>
   </div>
 
   <div class="card">
     <h3>📞 Customer Support</h3>
     <p>TopUp အကူအညီအတွက် ဆက်သွယ်ရန်</p>
-    <p class="notice">
-      Support ဆက်သွယ်ရန်လိပ်စာကို အတည်ပြုပြီးမှ ထည့်သွင်းပါ။
-    </p>
   </div>
 
-  <footer>
-    © Ko Ko MLBB TopUp<br>
-    Package availability and prices must be confirmed.
-  </footer>
+  <p class="note">
+    Package နဲ့ စျေးနှုန်းတွေဟာ နမူနာသာဖြစ်ပါတယ်။
+  </p>
 
   <script>
-    let currentPackage = "";
+    let selectedUC = "";
 
     function showPackages() {
       document.getElementById("packages").classList.remove("hidden");
@@ -211,12 +144,9 @@
       });
     }
 
-    function selectPackage(packageName) {
-      currentPackage = packageName;
-
-      document.getElementById("selectedPackage").textContent =
-        packageName;
-
+    function chooseUC(packageName) {
+      selectedUC = packageName;
+      document.getElementById("chosen").textContent = packageName;
       document.getElementById("order").classList.remove("hidden");
       document.getElementById("order").scrollIntoView({
         behavior: "smooth"
@@ -224,35 +154,20 @@
     }
 
     function reviewOrder() {
-      const playerId =
-        document.getElementById("playerId").value.trim();
+      const uid = document.getElementById("playerId").value.trim();
 
-      const serverId =
-        document.getElementById("serverId").value.trim();
-
-      const region =
-        document.getElementById("region").value;
-
-      if (!currentPackage) {
-        alert("Package ကို အရင်ရွေးပါ။");
+      if (!uid) {
+        alert("PUBG Player ID (UID) ကို ဖြည့်ပါ။");
         return;
       }
 
-      if (!playerId || !serverId) {
-        alert("Player ID နဲ့ Server ID ဖြည့်ပေးပါ။");
-        return;
-      }
+      document.getElementById("summary").textContent =
+        "Game: PUBG Mobile\n" +
+        "Package: " + selectedUC + "\n" +
+        "Player UID: " + uid;
 
-      const orderText =
-        "Package: " + currentPackage +
-        "\nRegion: " + region +
-        "\nPlayer ID: " + playerId +
-        "\nServer ID: " + serverId;
-
-      document.getElementById("summary").textContent = orderText;
-      document.getElementById("confirmation").classList.remove("hidden");
-
-      document.getElementById("confirmation").scrollIntoView({
+      document.getElementById("summaryCard").classList.remove("hidden");
+      document.getElementById("summaryCard").scrollIntoView({
         behavior: "smooth"
       });
     }
@@ -263,11 +178,10 @@
       try {
         await navigator.clipboard.writeText(text);
         alert("Order အချက်အလက် Copy လုပ်ပြီးပါပြီ။");
-      } catch (error) {
-        alert("Copy မရပါ။ Order အချက်အလက်ကို ကိုယ်တိုင်ကူးယူပါ။");
+      } catch (e) {
+        alert("Copy မရပါ။ အချက်အလက်ကို ကိုယ်တိုင်ကူးယူပါ။");
       }
     }
   </script>
-
 </body>
 </html>
